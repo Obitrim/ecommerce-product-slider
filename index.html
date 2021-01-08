@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Products</title>
+	<link rel="stylesheet" href="style.css"/>
+	<script src="./main.js" defer></script>
+</head>
+<body>
+	<div class="Partition">
+		<span class="Partition__Top"></span>
+		<span class="Partition__Bottom"></span>
+	</div>
+	<main class="Main">
+		<button class="ControlBtn ControlBtn--Prev">Prev</button>
+		<button class="ControlBtn ControlBtn--Next">Next</button>
+
+		<div class="Main__Info">
+			<h1 class="Main__Name">Product Name</h1>
+			<div class="Card__Sizes">
+				<h2>Sizes</h2>
+				<div class="Card__Sizes__Values">
+					<input name="size" type="radio"/>
+					<input name="size" type="radio"/>
+					<input name="size" type="radio"/>
+				</div>
+			</div>
+			<div class="Card__Colors">
+				<h2>Colors</h2>
+				<div class="Card__Colors__Values">
+					<input name="color" type="radio"/>
+					<input name="color" type="radio"/>
+					<input name="color" type="radio"/>
+				</div>
+			</div>
+			<button class="BuyNowBtn">Buy Now</button>
+		</div>
+		<img src="./images/red.png" class="ProductImg"/>
+	</main>
+</body>
+</html>
