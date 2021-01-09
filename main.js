@@ -28,7 +28,7 @@ const products = [
 		color: '#F6C531'
 	}
 ];
-let selectedIndex = 3;
+let selectedIndex = 0;
 
 // Nodes
 const card = document.querySelector('.Main__Info');
@@ -62,7 +62,7 @@ function renderProduct() {
 	setTimeout(() => {
 		productName.innerText = product.name;
 		productImg.src = product.image;
-		mainElement.style.setProperty('--theme-color',  product.color);
+		document.body.style.setProperty('--theme-color',  product.color);
 		renderSizes(product.sizes);
 		renderColors(product.colors);
 		// add animation
@@ -71,11 +71,30 @@ function renderProduct() {
 }
 
 function renderSizes(sizes) {
-	let template = sizes.map(size => `<input name="size" value="${size}" type="radio"/>`).join('');
+	let template = sizes.map((size, index) => (
+		`<label class="Card__Sizes__Value">
+			<input 
+				type="radio"
+				class="Card__Sizes__RadioInput"
+				name="size" 
+				value="${size}" 
+				/>
+			${size}
+		</label>`
+	)).join('');
 	sizesValuesWrapper.innerHTML = template;
 }
 
 function renderColors(colors) {
-	let template = colors.map(size => `<input name="size" value="${size}" type="radio"/>`).join('');
+	let template = colors.map((color, index) => (
+		`<input 
+			type="radio"
+			name="colors" 
+			class="Card__Colors__RadioInput"
+			style="background-color: ${color}" 
+			value="${color}" 
+			/>`
+		)
+	).join('');
 	colorValuesWrapper.innerHTML = template;
 }
