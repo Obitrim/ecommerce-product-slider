@@ -14,7 +14,7 @@ const products = [
 		color: '#4D563F'
 	},
 	{
-		name: 'orange Red sneakers',
+		name: 'orange Red',
 		colors: ['orange', 'pink', 'blue'],
 		sizes: ['41', '43', '45'],
 		image: './images/orange-red.png',
@@ -50,20 +50,24 @@ prevBtn.addEventListener('click', () => {
 });
 
 nextBtn.addEventListener('click', () => {
-	// let lastProductIndex = products.length - 1;
 	selectedIndex = selectedIndex === products.length - 1 ? 0 : selectedIndex + 1;
 	renderProduct();
 });
 
 function renderProduct() {
 	let product = products[selectedIndex];
+	// remove animation
+	mainElement.classList.remove('Main--Animate');
 	// render values
-	productName.innerText = product.name;
-	productImg.src = product.image;
-	mainElement.style.setProperty('--theme-color',  product.color);
-	renderSizes(product.sizes);
-	renderColors(product.colors);
-	// add animation
+	setTimeout(() => {
+		productName.innerText = product.name;
+		productImg.src = product.image;
+		mainElement.style.setProperty('--theme-color',  product.color);
+		renderSizes(product.sizes);
+		renderColors(product.colors);
+		// add animation
+		mainElement.classList.add('Main--Animate');
+	}, 250);
 }
 
 function renderSizes(sizes) {
