@@ -5,6 +5,7 @@
 
 *, *::before, *::after {
 	box-sizing: border-box;
+	transition: all var(--delay) ease-in-out;
 }
 
 body {
@@ -17,10 +18,10 @@ body {
 	place-items: center;
 
 	--theme-color: #FA3C4D;
+	--delay: 0.25s;
 }
 
 .Partition {
-
 	width: 30%;
 	height: 100%;
 	background-color: var(--theme-color);
@@ -49,16 +50,6 @@ body {
 	top: calc(100vh - 50px);
 }
 
-.Main {
-	box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.15);
-	border-radius: 0.5em;
-	padding: 2em;
-	background-color: white;
-
-	display: flex;
-	position: relative;
-}
-
 .ControlBtn {
 	position: absolute;
 	top: 50%;
@@ -71,6 +62,29 @@ body {
 
 .ControlBtn--Next {
 	right: -5em;
+}
+
+.Main {
+	box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.15);
+	border-radius: 0.5em;
+	padding: 2em;
+	background-color: white;
+
+	display: flex;
+	position: relative;
+}
+
+.Main::before {
+	content: "";
+    width: 250px;
+    height: 250px;
+    border-radius: 400px 224px 50%;
+    background-color: var(--theme-color);
+
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    z-index: 999;
 }
 
 .Main__Info {
@@ -86,6 +100,7 @@ body {
 	font-size: 4em;
 	text-transform: capitalize;
 	line-height: 100%;
+	opacity: 0; 
 }
 
 .BuyNowBtn {
@@ -96,6 +111,14 @@ body {
 	color: white;
 	border-radius: 1000px;
 	margin-top: 2em;
+	box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+
+	transition: var(--delay);
+}
+
+.BuyNowBtn:hover {
+	cursor: pointer;
+	box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .ProductImg {
@@ -103,20 +126,10 @@ body {
 	max-height: 400px;
 	position: relative;
 	z-index: 999;
+
+	opacity: 0;
 }
 
-.Main::before {
-	content: "";
-    width: 250px;
-    height: 250px;
-    border-radius: 400px 224px 50%;
-    background-color: var(--theme-color);
-
-    position: absolute;
-    right: 1em;
-    top: 1em;
-    z-index: 999;
-}
 
 .Card__Colors,
 .Card__Sizes {
@@ -166,4 +179,39 @@ body {
 	appearance: none;
 
 	padding: 0.3em;
+}
+
+/*ANIMATION STYLES*/
+
+.Main.Main--Animate .ProductImg {
+	animation: bounce 0.8s ease-in-out;
+	opacity: 1;
+}
+
+.Main.Main--Animate .Main__Info h1 {
+	opacity: 1;
+	transform: translateY(0);
+	animation: fade-in-up calc(var(--delay) * 2) ease-in-out forwards;
+}
+
+@keyframes bounce {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(1em);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes fade-in-up {
+	0% { 
+		transform: translateY(1em); 
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }
