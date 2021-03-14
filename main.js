@@ -40,22 +40,34 @@ const prevBtn = document.querySelector('.ControlBtn--Prev');
 const sizesValuesWrapper = document.querySelector('.Card__Sizes__Values');
 const colorValuesWrapper = document.querySelector('.Card__Colors__Values');
 
-document.addEventListener('DOMContentLoaded', () => {
-	renderProduct();
+document.addEventListener('DOMContentLoaded', async () => {
+	let firstProductImage = await fetch(products[selectedIndex].image);
+	let secondProductImage = await fetch(products[selectedIndex + 1].image);
+	Promise.all([firstProductImage, secondProductImage]).then(values => {
+		products[selectedIndex].image = values[0];
+		products[selectedIndex + 1].image = values[1];
+	}).catch(error => { console.error(error)});
+	renderProduct(products[selectedIndex]);
 });
 
 prevBtn.addEventListener('click', () => {
 	selectedIndex = selectedIndex === 0 ? products.length - 1 : selectedIndex - 1;
-	renderProduct();
+	renderProduct(products[selectedIndex]);
 });
 
-nextBtn.addEventListener('click', () => {
+nextBtn.addEventListener('click', async () => {
 	selectedIndex = selectedIndex === products.length - 1 ? 0 : selectedIndex + 1;
-	renderProduct();
+	if (selectedIndex < products.length - 1){
+		try {
+			let nextProductImage = await fetch(products[selectedIndex + 1].image);
+			products[selectedIndex + 1] = nextProductImage;
+		} catch(e) { console.error(e)}
+	}
+	renderProduct(products[selectedIndex]);
 });
 
-function renderProduct() {
-	let product = products[selectedIndex];
+function renderProduct(product) { 
+	// let product = products[selectedIndex];
 	// remove animation
 	mainElement.classList.remove('Main--Animate');
 	// render values
