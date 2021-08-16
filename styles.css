@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Niconne&family=Roboto:ital,wght@0,100;0,300;0,500;1,700&display=swap');
+
 * {
 	margin: 0;
 	padding: 0;
@@ -11,7 +13,9 @@ body {
 	width: 100vw;
 	height: 100vh;
 	overflow: hidden;
-	font-family: roboto, sans-serif;
+	font-family: 'Niconne', cursive;
+	font-size: var(--font-size);
+	/*font-family: roboto, sans-serif;*/
 
 	position: relative;
 	
@@ -19,6 +23,7 @@ body {
 	place-items: center;
 
 	--theme-color: #FA3C4D;
+	--color-success: #00dd55;
 	--grey: #ccc;
 	--delay: 0.25s;
 	--font-size: 16px;
@@ -64,12 +69,15 @@ body {
 	top: 50%;
 	transform: translateY(-50%);
 
-	font-size: 1.5rem;
+	font-size: 2em;
 	font-weight: bold;
 	color: var(--theme-color);
 	
 	width: 40px;
 	height: 40px;
+	display: grid;
+	place-items: center;
+
 	border-radius: 50%;
 	border: none;
 	background-color: white;
@@ -132,7 +140,8 @@ body {
 }
 
 .Main__Name {
-	font-size: 2em;
+	font-size: 2.5em;
+	font-weight: 500;
 	text-transform: capitalize;
 	line-height: 100%;
 	opacity: 0; 
@@ -141,11 +150,12 @@ body {
 
 .BuyNowBtn {
 	all: initial;
-	padding: 1em 3em;
+	padding: 0.5em 2em;
 	align-self: stretch;
 	text-align: center;
 
 	font-family: inherit;
+	font-size: 1.3em;
 	color: white;
 	background-color: var(--theme-color);
 
@@ -183,7 +193,7 @@ body {
 
 .Card__Colors__Heading,
 .Card__Sizes__Heading {
-	font-size: calc(var(--font-size) * 1.1);
+	font-size: 1.3em;
 }
 
 .Card__Colors__RadioInput:hover,
@@ -230,8 +240,8 @@ body {
 
 .Card__Sizes__Value {
 	border: 1px solid var(--grey);
-	padding: 0.3em 0.5em;
-	font-size: calc(var(--font-size) - 3px);
+	padding: 0.2em 0.45em;
+	font-size: 1.3em;
 	color: #bbb;
 
 	position: relative;
@@ -270,6 +280,57 @@ body {
 	opacity: 1;
 }
 
+/*TOAST*/
+.Toast {
+	position: fixed;
+	top: -60px;
+	right: 1rem;
+	z-index: 10000;
+
+	width: 250px;
+	background-color: white;
+	opacity: 0;
+	padding: 0.8rem;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 0.5rem;
+
+	display: flex;
+	align-items: flex-start;
+	gap: 0.5rem;
+}
+
+.Toast.Show {
+	animation: 4s slidedown ease-in-out;
+}
+
+@keyframes slidedown {
+	10%, 90% {
+		top: 1rem;
+		opacity: 1;
+	}
+}
+
+.Toast h1 {
+	font-size: 1.2em;
+	letter-spacing: 0.8px;
+	word-spacing: 2px;
+	color: var(--color-success);
+	font-weight: 600;
+	margin: 0;
+	padding: 0;
+}
+
+.Toast__Message {
+	font-size: 1.1em;
+	letter-spacing: 0.4px;
+	word-spacing: 1.4px;
+	margin-top: 0.4rem;
+}
+
+#checkIcon {
+	font-size: 1.5em;
+	color: var(--color-success);
+}
 
 @media (min-width: 768px) {
 	.Main {
