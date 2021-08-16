@@ -37,11 +37,21 @@ const productImg = document.querySelector('.ProductImg');
 const productName = document.querySelector('.Main__Name');
 const nextBtn = document.querySelector('.ControlBtn--Next');
 const prevBtn = document.querySelector('.ControlBtn--Prev');
+const toastWrapper = document.getElementsByClassName("Toast")[0];
+const buyNowBtn = document.getElementsByClassName("BuyNowBtn")[0];
 const sizesValuesWrapper = document.querySelector('.Card__Sizes__Values');
 const colorValuesWrapper = document.querySelector('.Card__Colors__Values');
 
 document.addEventListener('DOMContentLoaded', () => {
 	renderProduct();
+	buyNowBtn.addEventListener("click", () => {
+		let toastMessage = `${products[selectedIndex].name} will be delivered to you within 24hrs. Thanks for working with us`;
+		document.getElementsByClassName("Toast__Message")[0].innerText = toastMessage;
+		toastWrapper.classList.add("Show");
+		setTimeout(() => {
+			toastWrapper.classList.remove("Show");
+		}, 4000);
+	});
 });
 
 prevBtn.addEventListener('click', () => {
