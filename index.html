@@ -5,6 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Products</title>
 	<link rel="stylesheet" href="styles.css"/>
+	<script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+	<script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
 	<script src="./main.js" defer></script>
 </head>
 <body>
@@ -30,5 +33,14 @@
 		</div>
 		<img src="./images/red.png" class="ProductImg"/>
 	</main>
+	<div class="Toast">
+		<span  id="checkIcon">
+			<ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>
+		</span>
+		<article>
+			<h1>Purchase Successful</h1>
+			<p class="Toast__Message">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+		</article>
+	</div>
 </body>
 </html>
