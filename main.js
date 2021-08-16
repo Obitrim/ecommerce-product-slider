@@ -60,11 +60,13 @@ function renderProduct() {
 	mainElement.classList.remove('Main--Animate');
 	// render values
 	setTimeout(() => {
-		productName.innerText = product.name;
 		productImg.src = product.image;
-		document.body.style.setProperty('--theme-color',  product.color);
-		renderSizes(product.sizes);
-		renderColors(product.colors);
+		productImg.addEventListener("load", function() {
+			productName.innerText = product.name;
+			document.body.style.setProperty('--theme-color',  product.color);
+			renderSizes(product.sizes);
+			renderColors(product.colors);
+		});
 		// add animation
 		mainElement.classList.add('Main--Animate');
 	}, 250);
